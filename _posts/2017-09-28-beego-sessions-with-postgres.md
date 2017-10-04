@@ -50,7 +50,7 @@ SessionProvider = postgresql
 SessionProviderConfig = "postgres://username:password@localhost:5432/words?sslmode=disable"
 SessionName = session
 ```
-If you work under Linux you maybe don't need to provide `?sslmode=disable` flag.
+If you work under Linux you maybe don't need the `?sslmode=disable` flag.
 And pay attention to SessionProvider = postgres**ql** - you need this **ql** letters here.
 
 3) @main.go
@@ -66,22 +66,6 @@ import (
 	_ "github.com/lib/pq"
 )
 ```
-AND something like this
-
-```
-func init() {
-    ...
-
-	sessionconf := &session.ManagerConfig{
-		CookieName: "session",
-		Gclifetime: 3600,
-	}
-	globalSessions, _ := session.NewManager("postgresql", sessionconf)
-	go globalSessions.GC()
-```
-
-Again, pay attention to `session.NewManager("postgresql"`.
-Beego's author have mistyped here. You need this closing **ql**.
 
 4) Finally
 ![Beego's session module with Postgres](/assets/img/3.png){:class="img-responsive"}

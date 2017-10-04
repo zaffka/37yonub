@@ -72,22 +72,6 @@ import (
 	_ "github.com/lib/pq"
 )
 ```
-И так:
-
-```
-func init() {
-    ...
-
-	sessionconf := &session.ManagerConfig{
-		CookieName: "session",
-		Gclifetime: 3600,
-	}
-	globalSessions, _ := session.NewManager("postgresql", sessionconf)
-	go globalSessions.GC()
-```
-
-Снова обращаем внимание, правильно ли написано  `"postgresql"`.
-
 
 4) После этих шагов контроль сессий должен заработать.
 ![Beego's session module with Postgres](/assets/img/3.png){:class="img-responsive"}
