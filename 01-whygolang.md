@@ -39,8 +39,8 @@ permalink: /why_golang/
 
 Группы в Телеграм:
 
-    [Pro.Go](https://t.me/proGo)
+[Pro.Go](https://t.me/proGo)
 
-    [Golang RU](https://t.me/gogolang)
+[Golang RU](https://t.me/gogolang)
 
 [Проект 4gophers.ru](https://4gophers.ru/)
