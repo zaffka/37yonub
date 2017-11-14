@@ -22,7 +22,7 @@ url: "http://37yonub.ru" # the base hostname & protocol for your site, e.g. http
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: jekyll-theme-cayman
 permalink: /articles/:title
 exclude:
   - Gemfile
