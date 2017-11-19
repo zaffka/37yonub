@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: achievements
 title: Достижения
 permalink: /achievements/
 ---
