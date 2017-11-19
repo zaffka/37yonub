@@ -11,7 +11,15 @@ layout: default
 
             {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
             <span class="post-meta">{{ post.date | date: date_format }}</span>
-            <span class="category">{% assign categories = post.categories %}{% for category in categories %}{{category}}{% endfor %}</span>
+            {% assign categories = post.categories %}{% for category in categories %}
+            {% if category == "прогресс" %}
+            <span class="category-red">{{category}}</span>
+            {% elsif category == "achievement" %}
+            <span class="category-green">{{category}}</span>
+            {% else %}
+            <span class="category-gray">{{category}}</span>
+            {% endif %}
+                {% endfor %}
 
             <h2>
                 <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>

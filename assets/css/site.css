@@ -1,7 +1,23 @@
-.category {
+.category-gray {
     font-size: 0.7em;
     padding: 3px;
-    background-color: #b3b3b3;
+    background-color: #757575;
+    color: white;
+    border-radius: 4px;
+}
+
+.category-red {
+    font-size: 0.7em;
+    padding: 3px;
+    background-color: #d45b5b;
+    color: white;
+    border-radius: 4px;
+}
+
+.category-green {
+    font-size: 0.7em;
+    padding: 3px;
+    background-color: #49af58;
     color: white;
     border-radius: 4px;
 }
