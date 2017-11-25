@@ -3,6 +3,7 @@ layout: post
 title:  "Beego. How to force its session module to work with Postgres."
 date:   2017-09-28 12:15:15
 categories: golang
+comments: true
 ---
 If you try to use [official Beego's documentation on Session control](https://beego.me/docs/mvc/controller/session.md)
 you are probably getting errors like:

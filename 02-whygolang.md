@@ -2,6 +2,7 @@
 layout: page
 title: Почему Golang
 permalink: /why_golang/
+comments: true
 ---
 ### Почему для изучения выбран Go
 1. Читаемость кода
