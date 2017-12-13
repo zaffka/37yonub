@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Октябрь 2017, курс Building Distributed Applications with Go
+title:  Building Distributed Applications with Go
 date:   2017-10-29
 categories: achievement pluralsight
 comments: true

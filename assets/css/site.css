@@ -37,3 +37,13 @@
 .excerpt {
     font-size: 0.8em;
 }
+.achievement {
+    text-align: left;
+}
+.achievement td {
+    padding: 0 5px 0 5px;
+
+}
+.achievement-img {
+    width: 100px;
+}

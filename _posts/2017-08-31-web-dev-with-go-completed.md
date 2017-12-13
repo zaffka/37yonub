@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Август 2017, закончил курс Тодда Маклауда на Udemy
+title:  Курс Тодда Маклауда Web Development with GO
 date:   2017-08-31
 categories: achievement udemy
 comments: true

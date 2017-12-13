@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Октябрь 2017, курс Concurrent Programming with Go
+title:  Concurrent Programming with Go
 date:   2017-10-24
 categories: achievement pluralsight
 comments: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Октябрь 2017, курс Объектно-ориентированное программирование в Go
+title:  Объектно-ориентированное программирование в Go
 date:   2017-10-14
 categories: achievement pluralsight
 comments: true

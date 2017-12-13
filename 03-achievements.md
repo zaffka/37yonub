@@ -1,5 +1,5 @@
 ---
 layout: achievements
-title: Достижения
+title: Пройденные курсы
 permalink: /achievements/
 ---

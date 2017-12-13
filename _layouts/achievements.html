@@ -3,24 +3,43 @@ layout: default
 ---
 
 <div class="home">
-    {{ content }}
 
-    <ul class="post-list">
+
+    <table class="achievement">
+        <tr>
+            <th>Сервис</th>
+            <th>Название курса, сертификат, отзыв</th>
+            <th>Дата завершения</th>
+        </tr>
         {% for post in site.posts %}
         {% assign categories = post.categories %}{% for category in categories %}
-        {% if category == "achievement" %}
-        <li>
+        {% if category == "pluralsight" %}
+        {% assign date_format = site.minima.date_format | default: "%d.%m.%Y" %}
+        <tr>
+            <td><img src="/assets/img/pluralsight.png" class="achievement-img"></td>
+            <td><a class="achievement-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></td>
+            <td><span class="achievement-date">{{ post.date | date: date_format }}</span></td>
+        </tr>
 
-            {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-            <span class="post-meta">{{ post.date | date: date_format }}</span>
-            <h2>
-                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-            </h2>
-            {{ post.excerpt }}
-        </li>
+        {% endif %}
+        {% if category == "udemy" %}
+        {% assign date_format = site.minima.date_format | default: "%d.%m.%Y" %}
+        <tr>
+            <td><img src="/assets/img/udemy.png" class="achievement-img"></td>
+            <td><a class="achievement-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></td>
+            <td><span class="achievement-date">{{ post.date | date: date_format }}</span></td>
+        </tr>
+        {% endif %}
+        {% if category == "sololearn" %}
+        {% assign date_format = site.minima.date_format | default: "%d.%m.%Y" %}
+        <tr>
+            <td><img src="/assets/img/sololearn.png" class="achievement-img"></td>
+            <td><a class="achievement-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></td>
+            <td><span class="achievement-date">{{ post.date | date: date_format }}</span></td>
+        </tr>
         {% endif %}
         {% endfor %}
         {% endfor %}
-    </ul>
+    </table>
 
 </div>
