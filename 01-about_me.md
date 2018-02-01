@@ -1,6 +1,6 @@
 ---
 layout: page
-title: О мотивах и целях
+title: Обо мне
 permalink: /aboutme/
 comments: true
 ---
