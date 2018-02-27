@@ -30,6 +30,14 @@ layout: default
             <td><span class="achievement-date">{{ post.date | date: date_format }}</span></td>
         </tr>
         {% endif %}
+        {% if category == "coursera" %}
+        {% assign date_format = site.minima.date_format | default: "%d.%m.%Y" %}
+        <tr>
+            <td><img src="/assets/img/coursera.png" class="achievement-img"></td>
+            <td><a class="achievement-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></td>
+            <td><span class="achievement-date">{{ post.date | date: date_format }}</span></td>
+        </tr>
+        {% endif %}
         {% if category == "sololearn" %}
         {% assign date_format = site.minima.date_format | default: "%d.%m.%Y" %}
         <tr>
