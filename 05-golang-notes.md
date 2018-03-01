@@ -1,5 +1,5 @@
 ---
 layout: golang
-title: Заметки по Go
+title: Заметки
 permalink: /golang-notes/
 ---
