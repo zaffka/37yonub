@@ -22,6 +22,7 @@ permalink: /practice/
 
 
 Репозиторий API лежит тут: [https://github.com/zaffka/newwords](https://github.com/zaffka/newwords){:target="_blank"}
+
 Репозиторий веб-части тут: [https://github.com/zaffka/newwords-web](https://github.com/zaffka/newwords-web){:target="_blank"}
 
 Если вы вдруг решите туда заглянуть, то я заранее извиняюсь за эту кашу :))
