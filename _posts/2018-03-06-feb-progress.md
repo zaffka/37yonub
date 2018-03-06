@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Отчёт за февраль 2018"
-date:   2018-03-05
+date:   2018-03-06
 categories: прогресс
 comments: true
 ---
