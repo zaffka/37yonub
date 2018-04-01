@@ -9,7 +9,7 @@ comments: true
 
 Утомлять деталями не буду, последние три места работы скажут сами за себя:
 * <span style="color:red">Y</span>andex, Санкт-Петербург, менеджер проектов
-* [Bercut](http://bercut.com/about/), Санкт-Петербург, менеджер по развитию бизнеса
+* [Bercut](http://bercut.com/about/){:target="_blank"}, Санкт-Петербург, менеджер по развитию бизнеса
 * Expay Asia, Бангкок, Chief Operating Officer
 
 ## О мотивах
