@@ -10,14 +10,23 @@ comments: true
 
 Предварительные условия:
 * Полный набор настроек для отправки почты посредством SMTP;
-* Понимание, что такое переменные окружения и как редактировать bash profile.
-В эти детали я углубляться не планирую.
+* Понимание, что такое переменные окружения и как редактировать bash profile;
+
+В эти детали я углубляться не планирую, гайд расчитан на Linux\Mac пользователя.
 
 Ссылки по теме:
 * [Гайд по установке gRPC и Protocol buffers v3](https://grpc.io/docs/quickstart/go.html){:target="_blank"}
 * [Описание protocol buffers](https://developers.google.com/protocol-buffers/docs/overview){:target="_blank"}
 * [Генераторы protocol buffers v3](https://github.com/google/protobuf/releases){:target="_blank"}
 * [Полный код полученного микросервиса](https://github.com/zaffka/newwords-mailer){:target="_blank"}
+
+## Содержание
+- [Что такое gRPC](#что-такое-grpc)
+- [Необходимые установки](#необходимые-установки)
+- [Задача](#задача)
+- [Пишем proto-файл](#пишем-proto-файл)
+- [Генерируем Go package](#генерируем-go-package)
+- [Пишем код микросервиса](#пишем-код-микросервиса)
 
 ## Что такое gRPC
 Совсем коротко - это протокол удалённого вызова процедур с использованием protocol buffers.
@@ -28,11 +37,86 @@ comments: true
 
 Короче, магия! Гугл Дамблдоры, вперёд! :)
 
-## Установка (совсем коротко)
-1. Качаем отсюда [релиз protocol buffers под нужную платформу](https://github.com/google/protobuf/releases){:target="_blank"}
-1. Распаковываем архив, перемещаем исполняемый файл `bin/protoc` в `/usr/local/bin` (если у вас Linux или Mac OS), а подпапку `include/google` в `/usr/local/include`
+## Необходимые установки
+...совсем коротко.
+
+1. Качаем [отсюда релиз protocol buffers под нужную платформу](https://github.com/google/protobuf/releases){:target="_blank"}
+1. Распаковываем архив, перемещаем исполняемый файл `bin/protoc` в `/usr/local/bin`, а подпапку `include/google` в `/usr/local/include`
 1. Добавляем пару строк в `.profile`
 ```
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 ```
+1. Устанавливаем gRPC `go get -u google.golang.org/grpc`
+1. Устанавливаем плагин для генерации библиотеки proto buffers `go get -u github.com/golang/protobuf/protoc-gen-go`
+
+## Задача
+* Микросервис должен получать сообщения, содержащее два поля - адрес электронной почты (кому шлём письмо) и код.
+* Оба поля строкового типа.
+* Отвечать на запрос микросервис должен true - когда сообщение приянто в очередь на отправку или false - когда очередь переполнена.
+* Микросервис должен содержать два метода, для отправки пароля пользователю и для отправки кода восстановления пароля.
+Разницы, по сути, нет, просто разные шаблоны писем.
+* Код располагается в папке `go/src/github.com/zaffka/newwords-mailer`
+
+## Пишем proto-файл
+... он же - описание для данных, которые побегут между нашими клиентом и сервером.
+
+Создадим файл и подпапку `mailer/mailer.proto`
+```
+syntax = "proto3"; //указываем версию protocol buffers - третью
+
+//Наш сервис будет называться Mailer и содержать два метода - SendPass и RetrievePass
+//Оба метода по сути одинаковы, будут принимать сообщения MsgRequest, на которые ответят MsgReply
+
+service Mailer {
+    rpc SendPass(MsgRequest) returns (MsgReply) {}
+    rpc RetrievePass(MsgRequest) returns (MsgReply) {}
+}
+
+//формат данных для сообщения MsgRequest
+//первое поле - строка, название to
+//второе поле - строка, название code
+
+message MsgRequest {
+    string to = 1;
+    string code = 2;
+}
+
+//формат данных для сообщения MsgReply
+//одно поле - булеан, название sent
+
+message MsgReply {
+    bool sent = 1;
+}
+
+```
+
+## Генерируем Go package
+...содержащий код на основе нашего `mailer/mailer.proto`
+
+`protoc -I mailer/ mailer/mailer.proto --go_out=plugins=grpc:mailer`
+
+В папке проекта, в подпапке `mailer/` появился go package с именем `mailer.pb.go`.
+
+Да, вот так просто мы получили готовый go package, который содержит код, покрывающий и клиентскую и серверную части для удалённого вызова процедур.
+
+Просто добавь (в?) include! :)
+
+## Пишем код микросервиса
+Но для начала создадим каталоги `serv/` и `client/`, а в них стандартные `main.go`.
+
+Итоговая структура проекта  теперь такая:
+```
+mailer/
+    mailer.proto
+    mailer.pb.go
+serv/
+    main.go
+client/
+    main.go
+```
+
+Открываем `serv/main.go` в любимом редакторе.
+
+
+*статья в процессе написания*
