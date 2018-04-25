@@ -25,5 +25,7 @@ permalink: /practice/
 
 Репозиторий веб-части тут: [https://github.com/zaffka/newwords-web](https://github.com/zaffka/newwords-web){:target="_blank"}
 
+Репозиторий микросервиса для отправки email тут: [https://github.com/zaffka/newwords-mailer](https://github.com/zaffka/newwords-mailer){:target="_blank"}
+
 Если вы вдруг решите туда заглянуть, то я заранее извиняюсь за эту кашу :))
 Но полигон есть полигон! :)
