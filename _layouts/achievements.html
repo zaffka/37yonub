@@ -22,6 +22,15 @@ layout: default
         </tr>
 
         {% endif %}
+        {% if category == "mongodb" %}
+        {% assign date_format = site.minima.date_format | default: "%d.%m.%Y" %}
+        <tr>
+            <td><img src="/assets/img/university-logo.svg" class="achievement-img"></td>
+            <td><a class="achievement-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></td>
+            <td><span class="achievement-date">{{ post.date | date: date_format }}</span></td>
+        </tr>
+
+        {% endif %}
         {% if category == "udemy" %}
         {% assign date_format = site.minima.date_format | default: "%d.%m.%Y" %}
         <tr>
