@@ -276,4 +276,4 @@ az@az:~/go/src/github.com/zaffka/newwords-mailer$ go run client/main.go
 
 Вот так просто оказывается разделить код на микросервисы, используя Go и инструментарий gRPC.
 
-Часть 2
+[Часть 2](articles/batch-email-sending-using-golang-ru-p2)
