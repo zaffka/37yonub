@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Апрель 2018, поиск работы"
+title:  "Отчёт за апрель 2018, поиск работы"
 date:   2018-05-04
 categories: прогресс
 comments: true
