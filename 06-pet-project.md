@@ -7,6 +7,8 @@ permalink: /practice/
 
 Чтобы совместить полезное и снова полезное решил сделать на Go сервис по заучиванию иностранных слов. Это всем известные флэшкарточки, на которых с одной строны слово, на другой - его перевод.
 
+Сервис живёт по адресу [flip.37yonub.ru](http://flip.37yonub.ru){:target="_blank"}
+
 Да, приложений для изучения языков на Google Play и в iTunes - вагон. Но в основном это навороченные комбайны, с грамматикой, игровыми и прочими мотивационными "приколюхами".
 
 Мне же нужна одна единственная убер-функция - карточки. Эдакий цифровой спиннер.
@@ -14,18 +16,19 @@ permalink: /practice/
 
 Точно будут:
 
+* Импорт CSV-списков
 * Словари или автоперевод
 * Мультиязычность
-* Бот для телеграм
+* Бот для ~~телеграм~~ чего-нибудь
 
 ну и, понятно, вся остальная хурма - аутентификация, авторизация, отправка почты, восстановление паролей, удаление аккаунта, редактор списков и так далее.
 
 
 Репозиторий API лежит тут: [https://github.com/zaffka/newwords](https://github.com/zaffka/newwords){:target="_blank"}
 
-Репозиторий веб-части тут: [https://github.com/zaffka/newwords-web](https://github.com/zaffka/newwords-web){:target="_blank"}
+Репозиторий веб-части тут: [https://github.com/zaffka/newwords/web](https://github.com/zaffka/newwords/web){:target="_blank"}
 
-Репозиторий микросервиса для отправки email тут: [https://github.com/zaffka/newwords-mailer](https://github.com/zaffka/newwords-mailer){:target="_blank"}
+Репозиторий микросервиса для отправки email тут: [https://github.com/zaffka/newwords/mailer](https://github.com/zaffka/newwords/mailer){:target="_blank"}
 
 Если вы вдруг решите туда заглянуть, то я заранее извиняюсь за эту кашу :))
 Но полигон есть полигон! :)
