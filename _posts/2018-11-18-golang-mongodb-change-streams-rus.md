@@ -67,4 +67,4 @@ func ChangeStreamWatcher(ctx context.Context) {
 
 Рекомендую посмотреть код mgo драйвера тут: [globalsign's godoc page](https://godoc.org/github.com/globalsign/mgo) и посмотреть на реализацию функции Watch().
 
-Внимание! Вам понадобится MongoDB в режиме replica set, иначе change streams работать не будет. Чуть позже добавлю заметку, как быстро поднять реплика сет.
+Внимание! Вам понадобится MongoDB в режиме replica set, иначе change streams работать не будет. Про то, как поднять на локальной машине реплику можно [прочитать тут](http://37yonub.ru/articles/mongo-replica-set-docker-rus)
