@@ -33,6 +33,7 @@ func ChangeStreamWatcher(ctx context.Context) {
 	}
 
 	//запускаем бесконечный цикл обработки потока
+StreamLoop:
 	for {
 		select {
 		case <-ctx.Done(): //если родительский контекст закрылся
@@ -58,10 +59,21 @@ func ChangeStreamWatcher(ctx context.Context) {
 				DoSomethingWithElemFunc(elem)
 			}
 
+			//проверяем причину выхода из цикла обработки стрима
+			err = changeStream.Err()
+			if err != nil { // причина в чём-то, кроме исчерпания данных стрима
+				log.WithError(err).Error("Error while iterating change stream data") //логируемся
+				break StreamLoop                                                     //прерываем цикл опроса стрима (перезапускаем рутину полностью c переустановкой соединения)
+			}
+
 		}
 
 	}
-
+	//закрываем стрим при выходе из StreamLoop
+	err = changeStream.Close()
+	if err != nil {
+		log.WithError(err).Error("Failed to close change stream correctly")
+	}
 }
 ```
 

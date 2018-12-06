@@ -33,6 +33,7 @@ func ChangeStreamWatcher(ctx context.Context) {
 	}
 
 	//I want to infinite stream listening
+StreamLoop:
 	for {
 		select {
 		case <-ctx.Done(): //if parent context was cancelled
@@ -53,11 +54,21 @@ func ChangeStreamWatcher(ctx context.Context) {
 				elem := changeDoc.FullDocument
 				DoSomethingWithElemFunc(elem)
 			}
-
+			//checking the reason of the cycle interruption (why got false at the .Next func)
+			err = changeStream.Err()
+			if err != nil { // reason in something except coursor depletion
+				log.WithError(err).Error("Error while iterating change stream data") //logging
+				break StreamLoop                                                     //breaking the loop (func and stream connection to be completely restart)
+			}
 		}
 
 	}
 
+	//closing stream and exiting from the func
+	err = changeStream.Close()
+	if err != nil {
+		log.WithError(err).Error("Failed to close change stream correctly")
+	}
 }
 ```
 
