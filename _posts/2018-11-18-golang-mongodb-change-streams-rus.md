@@ -27,13 +27,13 @@ func ChangeStreamWatcher(ctx context.Context) {
 		//данные в стрим могут прилетать пачкой,
 		//этот параметр позволяет указать, сколько именно объектов прилетит
 	})
+	defer changeStream.Close()
 	if err != nil {
 		log.WithError(err).Error("Failed to open change stream")
 		return //выходим из функции
 	}
 
 	//запускаем бесконечный цикл обработки потока
-StreamLoop:
 	for {
 		select {
 		case <-ctx.Done(): //если родительский контекст закрылся
@@ -50,29 +50,28 @@ StreamLoop:
 				FullDocument types.YourStruc `bson:"fullDocument"`
 			}{}
 
-			//поскольку может содержать одновременно несколько объектов
-			//нужен цикл для их обработки
-			for changeStream.Next(&changeDoc) {
-				elem := changeDoc.FullDocument
+			//получаем следующую единицу данных
+			ok := changeStream.Next(&changeDoc)
 
-				//делаем что-то с каждым распакованным объектом
-				DoSomethingWithElemFunc(elem)
+			//если данные не распаковались, то ok == false
+			//теперь нам надо вызвать метод Err(), чтобы понять почему
+			//если результат вызова метода nil, значит в стриме просто нет данных
+			if !ok {
+				err := changeStream.Err()
+				if err != nil {
+					//если ошибка не пустая, выходим из функции
+					return
+				}
 			}
 
-			//проверяем причину выхода из цикла обработки стрима
-			err = changeStream.Err()
-			if err != nil { // причина в чём-то, кроме исчерпания данных стрима
-				log.WithError(err).Error("Error while iterating change stream data") //логируемся
-				break StreamLoop                                                     //прерываем цикл опроса стрима (перезапускаем рутину полностью c переустановкой соединения)
+			//если данные распаковались нормально, обрабатываем их
+			if ok {
+				elem := changeDoc.FullDocument
+				DoSomethingWithElemFunc(elem)
 			}
 
 		}
 
-	}
-	//закрываем стрим при выходе из StreamLoop
-	err = changeStream.Close()
-	if err != nil {
-		log.WithError(err).Error("Failed to close change stream correctly")
 	}
 }
 ```

@@ -27,13 +27,13 @@ func ChangeStreamWatcher(ctx context.Context) {
         //data can come from the stream simultaneously
         //this parameter is like a buffer size
 	})
+	defer changeStream.Close()
 	if err != nil {
 		log.WithError(err).Error("Failed to open change stream")
 		return //exiting func
 	}
-
-	//I want to infinite stream listening
-StreamLoop:
+	
+	//Handling change stream in a cycle
 	for {
 		select {
 		case <-ctx.Done(): //if parent context was cancelled
@@ -48,27 +48,29 @@ StreamLoop:
 				FullDocument types.YourStruc `bson:"fullDocument"`
 			}{}
 
-            //as our change stream can hold multiple elements
-            //we need a cycle to process it's data
-			for changeStream.Next(&changeDoc) {
+			//getting next item from the steam
+			ok := changeStream.Next(&changeDoc)
+
+			//if data from the stream wasn't unmarshaled, we get ok == false as a result
+			//so we need to call Err() method to get info why
+			//it'll be nil if we just have no data
+			if !ok {
+				err := changeStream.Err()
+				if err != nil {
+					//if err is not nil, it means something bad happened, let's finish our func
+					return
+				}
+			}
+
+			//if item from the stream unmarshalled successfuly, do something with it
+			if ok {
 				elem := changeDoc.FullDocument
 				DoSomethingWithElemFunc(elem)
-			}
-			//checking the reason of the cycle interruption (why got false at the .Next func)
-			err = changeStream.Err()
-			if err != nil { // reason in something except coursor depletion
-				log.WithError(err).Error("Error while iterating change stream data") //logging
-				break StreamLoop                                                     //breaking the loop (func and stream connection to be completely restart)
 			}
 		}
 
 	}
 
-	//closing stream and exiting from the func
-	err = changeStream.Close()
-	if err != nil {
-		log.WithError(err).Error("Failed to close change stream correctly")
-	}
 }
 ```
 
