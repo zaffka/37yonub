@@ -1,5 +1,5 @@
 ---
 layout: progress
-title: Прогресс
+title: Отчёты
 permalink: /progress/
 ---
