@@ -76,4 +76,4 @@ func ChangeStreamWatcher(ctx context.Context) {
 
 You can add some workarounds to restart ChangeStreamWatcher func and so on. Take a closer look to the [globalsign's godoc page](https://godoc.org/github.com/globalsign/mgo).
 
-Warning! You need a MongoDB replica set to work with change streams. A quick tip how to create mongo's replica set at your PC [is here](http://37yonub.ru/articles/mongo-replica-set-docker-localhost)
+Warning! You need a MongoDB replica set to work with change streams. A quick tip how to create mongo's replica set at your PC [is here](https://37yonub.ru/articles/mongo-replica-set-docker-localhost)

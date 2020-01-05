@@ -5,7 +5,7 @@ date:   2018-11-18
 categories: golang
 comments: true
 ---
-Разбирался как [использовать change stream от MongoDB в Go](http://37yonub.ru/articles/golang-mongodb-change-streams-rus), обнаружил, что для использования фичи, нужна монго в режиме репликации.
+Разбирался как [использовать change stream от MongoDB в Go](https://37yonub.ru/articles/golang-mongodb-change-streams-rus), обнаружил, что для использования фичи, нужна монго в режиме репликации.
 Вот как можно быстро поднять реплика сет на локальном компьютере в докер-контейнерах. 
 
 Надеюсь docker-compose уже установлен? Если нет, то дока [тут](https://docs.docker.com/compose/install/){:target="_blank"}

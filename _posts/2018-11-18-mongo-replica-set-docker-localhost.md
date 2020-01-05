@@ -5,7 +5,7 @@ date:   2018-11-18
 categories: golang
 comments: true
 ---
-Trying to [add MongoDB's change stream support to my Go code](http://37yonub.ru/articles/golang-mongodb-change-streams) I've find out it needs a replica set. Here is a quick tip how to set RS up on your local machine with Docker.
+Trying to [add MongoDB's change stream support to my Go code](https://37yonub.ru/articles/golang-mongodb-change-streams) I've find out it needs a replica set. Here is a quick tip how to set RS up on your local machine with Docker.
 
 Before all, you'll need the docker compose installed at your PC.  
 Check how to install it [here](https://docs.docker.com/compose/install/){:target="_blank"}

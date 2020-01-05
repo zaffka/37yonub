@@ -17,7 +17,7 @@ title: В программисты в 37 лет
 description: > # this means to ignore newlines until "baseurl:"
     Проверяем на практике каково это — менять профессию в зрелом возрасте.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://37yonub.ru" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://37yonub.ru" # the base hostname & protocol for your site, e.g. http://example.com
 comments: true
 
 # Build settings
